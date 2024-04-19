@@ -1,1 +1,63 @@
+the JavaScript SDK asynchronously in your page:
 
+<head>
+  <script src="https://www.paypal.com/sdk/js?client-id=CLIENT_ID
+"></script>
+</head>
+
+Alternatively, use JavaScript to asynchronously load the script:
+
+  var PAYPAL_SCRIPT = 'https://www.paypal.com/sdk/js?client-id=CLIENT_ID
+';
+  var script = document.createElement('script');
+  script.setAttribute('src', PAYPAL_SCRIPT);
+  document.head.appendChild(script);
+
+Call paypal.Buttons().render('#container') on the client-side render, route change, or user action that you want to trigger displaying the button:
+
+<div id="paypal-button-container"></div>
+
+<script>
+   document.querySelector('#myRadioField')
+     .addEventListener('click', function() {
+       paypal.Buttons().render('#paypal-button-container')
+     });
+</script>
+
+Alternatively, to ensure the button completely loads by the time it displays, render the button in advance in a hidden container, and display it on the page change or user action:
+
+<div id="paypal-button-container"></div>
+
+<script>
+   document.querySelector('#paypal-button-container')
+     .style.display = 'none';
+
+   paypal.Buttons().render('#paypal-button-container');
+
+   document.querySelector('#myRadioField')
+     .addEventListener('click', function() {
+       document.querySelector('#paypal-button-container')
+         .style.display = 'block';
+     });
+</script>
+
+Load the SDK as a module
+Loading the SDK as a module brings certain advantages, especially when working with single page applications. For example, you can optimize performance because the module lets you control loading behavior in JavaScript instead of HTML. It can also help reduce bugs by encapsulating data.
+
+Use the paypal-js npm package to integrate with front-end build tools. This package follows best practices such as loading the script asynchronously and providing a promise interface to know when script loading is complete.
+
+Use the react-paypal-js npm package within the React.js framework. It brings the same functionality as the paypal-js package, but tailored to the style of the framework. It ships React.js components for Buttons, Marks, and Messages on top.
+
+See the projects' README.md documentation for further details.
+
+See also
+JavaScript SDK complete reference.
+JavaScript SDK script configuration.
+Reference
+PayPal.com
+Privacy
+Cookies
+Support
+Legal
+Contact
+Navigated to JavaS
